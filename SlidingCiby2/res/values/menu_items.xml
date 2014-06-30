@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="menu_items">
+        <item >My BUZZOEK</item>
+        <item >NEARBY</item>
+        <item >MY PROFILE</item>
+        <item >NEWS</item>
+        <item >TOUR</item>
+        <item >SETTINGS</item>
+        <item >FEEDBACK</item>
+       
+    </string-array>
+    
+    <array name="nav_drawer_icons">
+          <item>@drawable/icon_my_buzzoek</item>
+        <item>@drawable/icon_nearby</item>
+        <item>@drawable/icon_myprofile</item>
+        <item>@drawable/icon_news</item>
+            <item>@drawable/icon_tour</item>
+        <item>@drawable/icon_settings</item>
+        <item>@drawable/icon_feedback</item>
+
+    </array>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</resources>

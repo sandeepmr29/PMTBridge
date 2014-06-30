@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="color_names">
+        <item>MY BUZZOEK</item>
+        <item>NEAR BY</item>
+        <item>MY PROFILE</item>
+        <item>NEWS</item>
+        <item>TOUR</item>
+            <item>SETTINGS</item>
+    </string-array>
+    
+    <string-array name="birds">
+        <item>Eagle</item>
+        <item>Flamingo</item>
+        <item>Heron</item>
+        <item>Ostrich</item>
+        <item>Peacock</item>
+        <item>Penguin</item>
+        <item>Toucan</item>
+        <item>Turkey</item>
+        <item>Vulture</item>
+    </string-array>
+
+  
+
+</resources>
