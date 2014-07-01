@@ -1,4 +1,4 @@
-package com.example.slidingciby;
+package com.bridge.bridgepmt.activities;
 
 
 import android.graphics.Typeface;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.bridge.bridgepmt.fragments.SampleListFragment;
+
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 

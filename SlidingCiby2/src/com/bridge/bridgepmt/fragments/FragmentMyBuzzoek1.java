@@ -1,6 +1,8 @@
 package com.bridge.bridgepmt.fragments;
 
-import com.example.slidingciby.R;
+
+
+import com.bridge.bridgepmt.activities.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

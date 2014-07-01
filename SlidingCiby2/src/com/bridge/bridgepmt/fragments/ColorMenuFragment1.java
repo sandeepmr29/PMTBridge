@@ -2,9 +2,9 @@ package com.bridge.bridgepmt.fragments;
 
 import java.util.ArrayList;
 
-import com.example.slidingciby.R;
-import com.example.slidingciby.SlidingmenuAdapter;
-import com.example.slidingciby.SlidingmenuItem;
+import com.bridge.bridgepmt.activities.R;
+import com.bridge.bridgepmt.adapters.SlidingmenuAdapter;
+import com.bridge.bridgepmt.model.SlidingmenuItem;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;

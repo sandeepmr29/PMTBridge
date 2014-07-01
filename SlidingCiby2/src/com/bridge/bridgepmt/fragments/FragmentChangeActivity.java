@@ -4,8 +4,8 @@ package com.bridge.bridgepmt.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.example.slidingciby.BaseActivity;
-import com.example.slidingciby.R;
+import com.bridge.bridgepmt.activities.BaseActivity;
+import com.bridge.bridgepmt.activities.R;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class FragmentChangeActivity extends BaseActivity {

@@ -1,4 +1,6 @@
-package com.example.slidingciby;
+package com.bridge.bridgepmt.activities;
+
+
 
 
 import android.app.Activity;

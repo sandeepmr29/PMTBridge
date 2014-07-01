@@ -1,6 +1,7 @@
 package com.bridge.bridgepmt.fragments;
 
-import com.example.slidingciby.R;
+import com.bridge.bridgepmt.activities.R;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.os.Build;
