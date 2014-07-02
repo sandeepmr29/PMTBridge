@@ -15,7 +15,7 @@
         android:theme="@style/ExampleTheme"
     >
         <activity
-            android:name="com.bridge.bridgepmt.fragments.FragmentChangeActivity"
+            android:name="com.bridge.bridgepmt.views.LoginScreen"
             android:label="@string/app_name"
               android:screenOrientation="portrait"
               android:theme="@style/MyTheme"
@@ -27,6 +27,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+         <activity
+            android:name="com.bridge.bridgepmt.fragments.FragmentChangeActivity"
+       /> 
     </application>
+    
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
