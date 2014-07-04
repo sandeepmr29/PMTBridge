@@ -76,6 +76,8 @@
       android:text="@string/forgotPassword"
       android:textAppearance="?android:attr/textAppearanceMedium" />
 
+   
+   
   
 
 </RelativeLayout>

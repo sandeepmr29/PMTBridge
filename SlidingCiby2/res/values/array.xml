@@ -2,11 +2,11 @@
 <resources>
 
     <string-array name="color_names">
-        <item>MY BUZZOEK</item>
-        <item>NEAR BY</item>
-        <item>MY PROFILE</item>
-        <item>NEWS</item>
-        <item>TOUR</item>
+        <item>Developer Evaluation</item>
+        <item>Hoursheet Report</item>
+        <item>Logout</item>
+        <item>Contact Us</item>
+        <item>My Profile</item>
             <item>SETTINGS</item>
     </string-array>
     

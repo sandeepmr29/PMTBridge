@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="menu_items">
-        <item >My BUZZOEK</item>
-        <item >NEARBY</item>
-        <item >MY PROFILE</item>
-        <item >NEWS</item>
-        <item >TOUR</item>
+        <item >Developer Evaluation</item>
+        <item >Hoursheet Report</item>
+        <item >Logout</item>
+        <item >Contact Us</item>
+        <item >My Profile</item>
         <item >SETTINGS</item>
         <item >FEEDBACK</item>
        
