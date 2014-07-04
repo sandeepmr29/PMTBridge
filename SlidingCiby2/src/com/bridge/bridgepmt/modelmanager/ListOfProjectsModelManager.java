@@ -37,6 +37,8 @@ public class ListOfProjectsModelManager
 				  try {
 					  listOfProjectScreenReturns=gson.fromJson(result, ListOfProjectScreenReturns.class);
 					 projectDetails= listOfProjectScreenReturns.getProjects();
+					 
+					 IListOfProjectsModelmanagerListner.onDidFinished(listOfProjectScreenReturns);
 
 				  } catch (Exception ex) {
 				   
@@ -47,7 +49,7 @@ public class ListOfProjectsModelManager
 			
 			@Override
 			public HttpUriRequest getHttpRequestMethod() {
-				HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/activeprojects/1");
+				HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/activeprojects/745");
 				return httpget;
 			}
 //			IListOfProjectsModelmanagerListner.onDidFinished(projectDetails);

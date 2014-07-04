@@ -36,6 +36,7 @@ public class LoginScreen extends Activity implements LoginScreenManagerListner,L
 	Button          mbtnlogin;
 	ProgressDialog  pd;
 	TextView        mtvforgotpassword;
+	String method = "post";
 	
 	/** On create for loading the UI  **/
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,7 @@ public class LoginScreen extends Activity implements LoginScreenManagerListner,L
 				         * **/
 				        LoginScreenManager loginScreenManager = new LoginScreenManager();
 				        loginScreenManager.iLoginScreenManagerListner=LoginScreen.this;
-				        loginScreenManager.loginUser(mContext,metUsername.getText().toString(),metPassword.getText().toString());						 
+				        loginScreenManager.loginUser(mContext,metUsername.getText().toString(),metPassword.getText().toString(),method);						 
 				        
 					}
 					else
@@ -145,7 +146,7 @@ public class LoginScreen extends Activity implements LoginScreenManagerListner,L
 	        				         * **/
 	        				        LoginScreenManager loginScreenManager = new LoginScreenManager();
 	        				        loginScreenManager.iLoginScreenManagerForgotListner=LoginScreen.this;
-	        				        loginScreenManager.forgotPassword(mContext,meditTextDialogUserInput.getText().toString());						 
+	        				        loginScreenManager.forgotPassword(mContext,meditTextDialogUserInput.getText().toString(),method);						 
 	        				        
 	                				}
 	                            	else

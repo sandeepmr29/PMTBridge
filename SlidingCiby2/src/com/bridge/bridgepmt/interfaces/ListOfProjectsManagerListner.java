@@ -1,5 +1,8 @@
 package com.bridge.bridgepmt.interfaces;
 
-public interface ListOfProjectsManagerListner {
+import com.bridge.bridgepmt.model.ListOfProjectScreenReturns;
 
+public interface ListOfProjectsManagerListner 
+{
+	 void onDidFinished(ListOfProjectScreenReturns Projectdetails);
 }

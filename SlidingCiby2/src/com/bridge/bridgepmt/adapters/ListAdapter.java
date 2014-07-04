@@ -8,6 +8,7 @@ import com.bridge.bridgepmt.model.ProjectDetails;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.telephony.SmsManager;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -27,6 +29,8 @@ import android.widget.TextView;
 
 public class ListAdapter extends BaseAdapter {
 
+
+	
 	/** The listner. */
 
 	/** The activity. */
@@ -34,14 +38,14 @@ public class ListAdapter extends BaseAdapter {
 
 	/** The array list tip. */
 	
-	ArrayList<ProjectDetails> projectdetails;
+	ArrayList<ProjectDetails> projectdetillist;
 
 	/** The inflater. */
 	public LayoutInflater inflater = null;
 
 	
 
-	ProjectDetails projectDetailList;
+	ProjectDetails projectDetails;
 
 	/** The selected position. */
 
@@ -60,8 +64,8 @@ public class ListAdapter extends BaseAdapter {
 	public ListAdapter(Activity listingActivity, int listrowTip,
 			ArrayList<ProjectDetails> arrayListTip, Context con) {
 		activity = listingActivity;
-		this.projectdetails = new ArrayList<ProjectDetails>();
-		this.projectdetails = arrayListTip;
+
+		this.projectdetillist = arrayListTip;
 		inflater = (LayoutInflater) activity
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
@@ -73,7 +77,7 @@ public class ListAdapter extends BaseAdapter {
 	 * @see android.widget.Adapter#getCount()
 	 */
 	public int getCount() {
-		return projectdetails.size();
+		return projectdetillist.size();
 	}
 
 	/*
@@ -82,7 +86,7 @@ public class ListAdapter extends BaseAdapter {
 	 * @see android.widget.Adapter#getItem(int)
 	 */
 	public ProjectDetails getItem(int position) {
-		return projectdetails.get(position);
+		return projectdetillist.get(position);
 	}
 
 	/*
@@ -108,13 +112,13 @@ public class ListAdapter extends BaseAdapter {
 			listContentView = inflater.inflate(R.layout.projectlistrw, null);
 		}
 
-		projectDetailList = projectdetails.get(position);
-		if (projectDetailList != null) {
+		projectDetails = projectdetillist.get(position);
+		if (projectDetails != null) {
 
-			
-			TextView txt_name = (TextView) listContentView
-					.findViewById(R.id.txt_name);
 		
+			TextView projectnametxtview = (TextView) listContentView
+					.findViewById(R.id.txt_name);
+	projectnametxtview.setText(projectDetails.getName());
 
 		}
 		return listContentView;

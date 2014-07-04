@@ -51,7 +51,7 @@ public class LoginScreenModelManager
 //
 //	}
 
-	public void loginProcess(final Context mContext,final String username, final String password) 
+	public void loginProcess(final Context mContext,final String username, final String password, String method) 
 	{
 		
 		Log.e("login process","Login process");		
@@ -100,12 +100,12 @@ public class LoginScreenModelManager
 				iLoginScreenModelManageListner.onDidFinished(loginScreenReturn);
 				
 			}
-		}.execute();
+		}.execute(method);
 		
 		
 	}
 	
-	public void ForgotPasswordProcess(final Context mContext,final String email) 
+	public void forgotPasswordProcess(final Context mContext,final String email, String method) 
 	{
 		new AsyncWebHandler() 
 		{
@@ -154,7 +154,7 @@ public class LoginScreenModelManager
 				
 			}
 			
-		}.execute();
+		}.execute(method);
 		
 		
 	}

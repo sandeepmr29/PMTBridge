@@ -41,7 +41,7 @@ public class ListOfProjectsManager implements ListOfProjectsModelmanagerListner
 	@Override
 	public void onDidFinished(ListOfProjectScreenReturns Projectdetails) 
 	{
-		// TODO Auto-generated method stub
+		IListOfProjectsManagerListner.onDidFinished(Projectdetails);
 		
 	}
 

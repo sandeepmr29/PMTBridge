@@ -34,6 +34,7 @@ import android.util.Log;
 
 public class AsyncWebClient extends AsyncTask<String, Void, String> {
 	
+	public String method;
 	private AsyncWebHandler httpWebHandler;
 	private AsyncWebHandlerForGetApi httpWebHandlerForGetApi;
 	
@@ -50,27 +51,31 @@ public class AsyncWebClient extends AsyncTask<String, Void, String> {
 	@Override
 	protected String doInBackground(String... paramsStrings) 
 	{
+		method=paramsStrings[0].toString();
 		InputStream is = null;
+		HttpResponse httpResponse;
 
 		 HttpClient httpclient = new DefaultHttpClient();
 		 
 		 try 
 		 {
 			
-			HttpResponse httpResponse = httpclient.execute(httpWebHandler.postHttpRequestMethod());
+			 if(paramsStrings[0].equals("get"))
+				{
+					/** make the http request*/
+					 httpResponse = httpclient.execute(httpWebHandlerForGetApi.getHttpRequestMethod());
+					
+				}	
+				else {
+	                 httpResponse = httpclient.execute(httpWebHandler.postHttpRequestMethod());
 			
-			if(paramsStrings.equals("get"))
-			{
-				/** make the http request*/
-				HttpResponse httpGetResponse = httpclient.execute(httpWebHandlerForGetApi.getHttpRequestMethod());
-				
-			}
+				}
 		
 		    HttpEntity entity = httpResponse.getEntity();
 		    		    
 		    
 		    is = entity.getContent();
-	        String contentAsString = getString(is);
+		    String contentAsString = getString(is);
 	        Log.e("response", contentAsString);
 	        
 	        return contentAsString;
@@ -116,12 +121,17 @@ public class AsyncWebClient extends AsyncTask<String, Void, String> {
 
 	}
 
-	protected void onPostExecute(String contentAsString) {
+protected void onPostExecute(String contentAsString) {
+		
+		if(method.equals("post")){
 		httpWebHandler.onResponse(contentAsString);
-
-	}
+		}
+		else  if(method.equals("get"))
+		{
+			httpWebHandlerForGetApi.ongetResponse(contentAsString);
+		}
 	
 	
-
+}
 
 }

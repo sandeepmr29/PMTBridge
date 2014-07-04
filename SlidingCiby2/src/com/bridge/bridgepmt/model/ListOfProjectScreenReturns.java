@@ -7,6 +7,16 @@ public class ListOfProjectScreenReturns
 {
 	
 	ArrayList<ProjectDetails> projects;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	String status;
 
 	public ArrayList<ProjectDetails> getProjects() {
 		return projects;

@@ -36,19 +36,19 @@ public class LoginScreenManager implements LoginScreenModelManagerListner ,Login
 ////	  Email=email;
 //  }
 
-public void loginUser(Context mContext,String username, String password)
+public void loginUser(Context mContext,String username, String password, String method)
 	{
 		LoginScreenModelManager loginScreenModelManager = new LoginScreenModelManager();
 		loginScreenModelManager.iLoginScreenModelManageListner=LoginScreenManager.this;
-		loginScreenModelManager.loginProcess(mContext,username,password);
+		loginScreenModelManager.loginProcess(mContext,username,password,method);
 	
 	}
 
-public void forgotPassword(Context mContext,String email)
+public void forgotPassword(Context mContext,String email, String method)
 {
 	LoginScreenModelManager loginScreenModelManager = new LoginScreenModelManager();
 	loginScreenModelManager.iLoginScreenmodelManagerForgotListner=LoginScreenManager.this;
-	loginScreenModelManager.ForgotPasswordProcess(mContext,email);
+	loginScreenModelManager.forgotPasswordProcess(mContext,email,method);
 
 }
 

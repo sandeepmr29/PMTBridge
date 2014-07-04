@@ -1,12 +1,9 @@
 package com.bridge.bridgepmt.fragments;
 
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +12,6 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.bridge.bridgepmt.activities.R;
-
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 
@@ -26,7 +22,8 @@ public class FragmentMyDeveloperEvaluation extends Fragment {
     TextView mTitletxtview;
     Button   mbtnEvaluateDev;
     
-    private Fragment mContent;
+    @SuppressWarnings("unused")
+	private Fragment mContent;
   
     public FragmentMyDeveloperEvaluation() {
     }
