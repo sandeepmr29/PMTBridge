@@ -1,35 +1,45 @@
 package com.bridge.bridgepmt.fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.bridge.bridgepmt.activities.R;
+
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 
 
-public class FragmentMyBuzzoek extends Fragment {
+public class FragmentMyDeveloperEvaluation extends Fragment {
     CheckBox checkBox1;
     CheckBox checkBox2;
     TextView mTitletxtview;
-    public FragmentMyBuzzoek() {
+    Button   mbtnEvaluateDev;
+    
+    private Fragment mContent;
+  
+    public FragmentMyDeveloperEvaluation() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_mybuzzoek, null);
+        View view = inflater.inflate(R.layout.fragment_developerevaluation, null);
     
-
+        mbtnEvaluateDev=(Button)view.findViewById(R.id.btnEvaluateDev);
         
         return view;
+        
     }
 
 
@@ -38,21 +48,34 @@ public class FragmentMyBuzzoek extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		FragmentActivity i=		getActivity();
+		final FragmentActivity i=		getActivity();
 		SlidingFragmentActivity k=(SlidingFragmentActivity)i;
 		View v=k.getSupportActionBar().getCustomView();
 			 //    View v=getS
 			     TextView mhead=(TextView)v.findViewById(R.id.mytext);
+			    
+			     
 					Typeface signupfont=Typeface.createFromAsset(getActivity().getAssets(),"fonts/MuseoSans-300.otf"); 
 					mhead.setTypeface(signupfont);
-			     mhead.setText("My Buzzoek");
-			     TextView maptxtview=(TextView)v.findViewById(R.id.txt_map);
+			     mhead.setText("Developer Evaluation");
 
-if(maptxtview.getVisibility()==View.VISIBLE)
-{
-	maptxtview.setVisibility(View.INVISIBLE);
+			     
+			     mbtnEvaluateDev.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) 
+					{
 
-}
+						Fragment listOfProjectsFragments = new ListOfProjectsFragments();
+						FragmentChangeActivity fragmentChangeActivity=		(FragmentChangeActivity) getActivity();
+						fragmentChangeActivity.switchContent(listOfProjectsFragments);
+							
+					}
+				});	     
+			     
+			     
+			     
+			     
 	}
 	
 	

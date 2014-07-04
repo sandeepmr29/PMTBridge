@@ -10,8 +10,7 @@ public class User
 	private int status_id;
 	private String status_name;
 	private String accessToken;
-	
-	
+
 	public int getId() {
 		return id;
 	}

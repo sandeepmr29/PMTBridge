@@ -31,7 +31,7 @@ public class FragmentMenuSliding extends Fragment {
   
         View view = inflater.inflate(R.layout.fragment_listview, null);
     
-        String[] listViewItems = new String[] { "My Buzzoek","Nearby", "My Profile",  "Meego", "Symbian", "Blackberry", "Meego", "Symbian", "Blackberry", "Meego", "Symbian"};
+        String[] listViewItems = new String[] { "Developer Evaluation","Hoursheet Report", "My Profile",  "Meego", "Symbian", "Blackberry", "Meego", "Symbian", "Blackberry", "Meego", "Symbian"};
         listView = (ListView) view.findViewById(R.id.fragment_listview_listview);
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, listViewItems));
@@ -43,11 +43,7 @@ public class FragmentMenuSliding extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 		
-		
-		
-		
-		
-		
+	
 		FragmentActivity i=		getActivity();
 		SlidingFragmentActivity k=(SlidingFragmentActivity)i;
 		View v=k.getSupportActionBar().getCustomView();
@@ -71,12 +67,7 @@ public class FragmentMenuSliding extends Fragment {
 							fca.switchContent(fragment);
 						}
 					});
-			     
-			     
-			     
-			     
-			     
-			     
+		     
 			     
 	}
     

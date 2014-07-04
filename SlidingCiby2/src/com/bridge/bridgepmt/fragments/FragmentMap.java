@@ -53,10 +53,7 @@ public class FragmentMap extends Fragment {
 						fca.switchContent(fragment);
 					}
 				});
-			     
-			     
-			     
-			     
+   	     
 			     
 	}
 

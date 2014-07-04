@@ -16,11 +16,11 @@ import android.widget.TextView;
 
 
 
-public class FragmentNews extends Fragment {
+public class FragmentMyContactUs extends Fragment {
     CheckBox checkBox1;
     CheckBox checkBox2;
     TextView mTitletxtview;
-    public FragmentNews() {
+    public FragmentMyContactUs() {
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB) @SuppressLint("NewApi") @Override
@@ -41,7 +41,7 @@ public class FragmentNews extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 	     View v=getActivity().getActionBar().getCustomView();
 	     TextView mhead=(TextView)v.findViewById(R.id.mytext);
-	     mhead.setText("News");
+	     mhead.setText("Contact Us");
 	     TextView maptxtview=(TextView)v.findViewById(R.id.txt_map);
 
 if(maptxtview.getVisibility()==View.VISIBLE)
@@ -50,8 +50,6 @@ maptxtview.setVisibility(View.INVISIBLE);
 
 }
 	}
-
-
 	
 	
 }

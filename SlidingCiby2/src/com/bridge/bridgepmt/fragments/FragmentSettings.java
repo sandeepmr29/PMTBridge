@@ -44,7 +44,7 @@ public class FragmentSettings extends Fragment {
 		View v=k.getSupportActionBar().getCustomView();
 			 //    View v=getS
 			     TextView mhead=(TextView)v.findViewById(R.id.mytext);
-			     mhead.setText("Settings");
+			     mhead.setText("Contact us");
 			     TextView maptxtview=(TextView)v.findViewById(R.id.txt_map);
 
 if(maptxtview.getVisibility()==View.VISIBLE)

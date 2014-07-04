@@ -43,21 +43,18 @@ public class FragmentListView extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 		
-		
-		
-		
-		
+	
 		
 		FragmentActivity i=		getActivity();
 		SlidingFragmentActivity k=(SlidingFragmentActivity)i;
 		View v=k.getSupportActionBar().getCustomView();
 			 //    View v=getS
 			     TextView mhead=(TextView)v.findViewById(R.id.mytext);
-			     mhead.setText("NEAR BY");
+			     mhead.setText("Hoursheet Report");
 
 			     
 			     TextView maptxtview=(TextView)v.findViewById(R.id.txt_map);
-			     maptxtview.setText("MAP"); 
+			     maptxtview.setText(""); 
 			     maptxtview.setVisibility(View.VISIBLE);
 			     
 			     
@@ -71,11 +68,6 @@ public class FragmentListView extends Fragment {
 							fca.switchContent(fragment);
 						}
 					});
-			     
-			     
-			     
-			     
-			     
 			     
 			     
 	}

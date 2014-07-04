@@ -6,11 +6,13 @@ import android.support.v4.app.Fragment;
 
 import com.bridge.bridgepmt.activities.BaseActivity;
 import com.bridge.bridgepmt.activities.R;
+import com.bridge.bridgepmt.app.Bridgepmt;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class FragmentChangeActivity extends BaseActivity {
 	
 	private Fragment mContent;
+	
 	
 	public FragmentChangeActivity() {
 		super(R.string.changing_fragments);
@@ -20,10 +22,25 @@ public class FragmentChangeActivity extends BaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// set the Above View
-		if (savedInstanceState != null)
+		
+		if(Bridgepmt.getCurrentlogin()==1)
+		{
+			if (savedInstanceState != null)
+				mContent = getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
+			if (mContent == null)
+				mContent = new FragmentMyProfile1() ;
+			
+			
+		}
+		else
+		{
+			if (savedInstanceState != null)
 			mContent = getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
 		if (mContent == null)
-			mContent = new FragmentMyBuzzoek1();
+			mContent = new FragmentMyDeveloperEvaluation1();
+		}
+
+
 		
 
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.bridge.bridgepmt.activities.R;
 import com.bridge.bridgepmt.adapters.SlidingmenuAdapter;
+import com.bridge.bridgepmt.app.Bridgepmt;
 import com.bridge.bridgepmt.model.SlidingmenuItem;
 
 import android.content.res.TypedArray;
@@ -44,6 +45,7 @@ public class ColorMenuFragment1 extends ListFragment {
 		
 		
 	        navDrawerItems = new ArrayList<SlidingmenuItem>();
+	
 	        navDrawerItems.add(new SlidingmenuItem(lvMenuItems[0], navMenuIcons.getResourceId(0, -1)));
 	        // Find People
 	        navDrawerItems.add(new SlidingmenuItem(lvMenuItems[1], navMenuIcons.getResourceId(1, -1)));
@@ -53,9 +55,7 @@ public class ColorMenuFragment1 extends ListFragment {
 	        navDrawerItems.add(new SlidingmenuItem(lvMenuItems[3], navMenuIcons.getResourceId(3, -1)));
 	        
 	        navDrawerItems.add(new SlidingmenuItem(lvMenuItems[4], navMenuIcons.getResourceId(4, -1)));
-	        navDrawerItems.add(new SlidingmenuItem(lvMenuItems[5], navMenuIcons.getResourceId(5, -1)));
-	        navDrawerItems.add(new SlidingmenuItem(lvMenuItems[6], navMenuIcons.getResourceId(6, -1)));
-	        
+        
 	        navMenuIcons.recycle();
 	        adapter=new SlidingmenuAdapter(getActivity(), navDrawerItems);
 	        setListAdapter(adapter);
@@ -87,19 +87,19 @@ public class ColorMenuFragment1 extends ListFragment {
 		Fragment newContent = null;
 		switch (position) {
 		case 0:
-			newContent = new FragmentMyBuzzoek();
+			newContent = new FragmentMyDeveloperEvaluation();
 			break;
 		case 1:
 			newContent = new FragmentListView();
 			break;
 		case 2:
-			newContent = new FragmentMyProfile();
+			newContent = new FragmentMyLogout();
 			break;
 		case 3:
-			newContent = new FragmentNews();
+			newContent = new FragmentMyContactUs();
 			break;
 		case 4:
-			newContent = new FragmentTour();
+			newContent = new FragmentMyProfile();
 			break;
 		
 	case 5:

@@ -24,92 +24,31 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 
+import com.bridge.bridgepmt.fragments.ListOfProjectsFragments;
 import com.bridge.bridgepmt.utilities.SMConstants;
 import com.bridge.bridgepmt.utilities.SMUtility;
-
 
 import android.os.AsyncTask;
 import android.util.Log;
 
 
-//public class AsyncWebClient extends AsyncTask<String, Void, String> {
-//
-//	private AsyncWebHandler httpWebHandler;
-//	public AsyncWebClient(AsyncWebHandler httpWebHandler){
-//		this.httpWebHandler = httpWebHandler;
-//		
-////		Listner interfaceclass;
-//		
-//	}
-//
-//
-//	@Override
-//	protected String doInBackground(String... arg0) {
-//		InputStream inputStream = null;
-//		String result = "";
-//////		ArrayList<LocationDetailsInfo>details;
-//		try {
-//			// create HttpClient
-//			HttpClient httpclient = new DefaultHttpClient();
-//
-//			// make the http request
-//			HttpResponse httpResponse = httpclient.execute(httpWebHandler.postHttpRequestMethod());
-//
-//			// receive response as inputStream
-//			inputStream = httpResponse.getEntity().getContent();
-//
-//			// convert inputstream to string
-//			if(inputStream != null)
-//			{
-//				result = convertInputStreamToString(inputStream);
-//
-//				Log.e("result",result);
-//			}
-//			
-//	
-//			
-//			else
-//				result = "Did not work!";
-//
-//		} catch (Exception e) {
-//			Log.e("Network Call", "Error");
-//		}
-//
-//		return result;
-//	}
-//	@Override
-//	protected void onPostExecute(String result) {
-//		httpWebHandler.onResponse(result);
-////		interfaceclass.onDidFinish(details);
-//	}
-//
-//	private static String convertInputStreamToString(InputStream inputStream) throws IOException{
-//	        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-//	        String line = "";
-//	        String result = "";
-//	        while((line = bufferedReader.readLine()) != null)
-//	            result += line;
-//
-//	        inputStream.close();
-//	        return result;
-//
-//	    }
-//}
-
 public class AsyncWebClient extends AsyncTask<String, Void, String> {
 	
-
-
 	private AsyncWebHandler httpWebHandler;
+	private AsyncWebHandlerForGetApi httpWebHandlerForGetApi;
 	
 	public AsyncWebClient(AsyncWebHandler httpWebHandler){
 		this.httpWebHandler = httpWebHandler;	
 	}
 	
-
 	
+	public AsyncWebClient(AsyncWebHandlerForGetApi httpWebHandlerForGetApi) {
+		this.httpWebHandlerForGetApi=httpWebHandlerForGetApi;
+	}
+
+
 	@Override
-	protected String doInBackground(String... params) 
+	protected String doInBackground(String... paramsStrings) 
 	{
 		InputStream is = null;
 
@@ -117,12 +56,18 @@ public class AsyncWebClient extends AsyncTask<String, Void, String> {
 		 
 		 try 
 		 {
-			 
+			
 			HttpResponse httpResponse = httpclient.execute(httpWebHandler.postHttpRequestMethod());
+			
+			if(paramsStrings.equals("get"))
+			{
+				/** make the http request*/
+				HttpResponse httpGetResponse = httpclient.execute(httpWebHandlerForGetApi.getHttpRequestMethod());
+				
+			}
+		
 		    HttpEntity entity = httpResponse.getEntity();
-		    
-
-		    
+		    		    
 		    
 		    is = entity.getContent();
 	        String contentAsString = getString(is);
@@ -130,9 +75,6 @@ public class AsyncWebClient extends AsyncTask<String, Void, String> {
 	        
 	        return contentAsString;
 	        
-
-
-
 			
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
@@ -149,10 +91,10 @@ public class AsyncWebClient extends AsyncTask<String, Void, String> {
 			 
 			 return null;
 		 }
-
 		
+		 
+		 
 	}
-	
 	
 	public static String getString(InputStream is) throws IOException
 	 {
@@ -174,15 +116,12 @@ public class AsyncWebClient extends AsyncTask<String, Void, String> {
 
 	}
 
-
 	protected void onPostExecute(String contentAsString) {
 		httpWebHandler.onResponse(contentAsString);
 
 	}
 	
 	
-	
-
 
 
 }

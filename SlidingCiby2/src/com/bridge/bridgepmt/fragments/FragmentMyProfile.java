@@ -10,23 +10,20 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.bridge.bridgepmt.activities.R;
+import com.bridge.bridgepmt.app.Bridgepmt;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-
-
-public class FragmentMyProfile extends Fragment {
+public class FragmentMyProfile  extends Fragment {
     CheckBox checkBox1;
     CheckBox checkBox2;
     TextView mTitletxtview;
-    public FragmentMyProfile() {
-    }
-
+  
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myprofile, null);
     
-
+     
         
         return view;
     }
@@ -51,6 +48,5 @@ if(maptxtview.getVisibility()==View.VISIBLE)
 	}
 
 
-	
 	
 }

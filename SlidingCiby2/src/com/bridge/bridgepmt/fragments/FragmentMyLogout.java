@@ -10,23 +10,22 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.bridge.bridgepmt.activities.R;
+import com.bridge.bridgepmt.app.Bridgepmt;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 
 
-public class FragmentTour extends Fragment {
+public class FragmentMyLogout extends Fragment {
     CheckBox checkBox1;
     CheckBox checkBox2;
     TextView mTitletxtview;
-    public FragmentTour() {
+    public FragmentMyLogout() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tour, null);
-    
-
+        View view = inflater.inflate(R.layout.fragment_logout, null);
         
         return view;
     }
@@ -40,7 +39,7 @@ public class FragmentTour extends Fragment {
 		View v=k.getSupportActionBar().getCustomView();
 			 //    View v=getS
 			     TextView mhead=(TextView)v.findViewById(R.id.mytext);
-			     mhead.setText("Tour");
+			     mhead.setText("Logout");
 			     TextView maptxtview=(TextView)v.findViewById(R.id.txt_map);
 
 if(maptxtview.getVisibility()==View.VISIBLE)
