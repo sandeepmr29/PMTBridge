@@ -52,7 +52,7 @@ public class ListOfProjectsModelManager
 				HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/activeprojects/745");
 				return httpget;
 			}
-//			IListOfProjectsModelmanagerListner.onDidFinished(projectDetails);
+
 
 
 		}.execute(ifGetRequest);

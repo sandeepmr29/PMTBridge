@@ -3,8 +3,8 @@ package com.bridge.bridgepmt.adapters;
 import java.util.ArrayList;
 
 import com.bridge.bridgepmt.activities.R;
+import com.bridge.bridgepmt.model.Developerdetails;
 import com.bridge.bridgepmt.model.ProjectDetails;
-
 
 import android.app.Activity;
 import android.content.Context;
@@ -27,7 +27,7 @@ import android.widget.TextView;
  * initializes the textview in the listrw **/
 
 
-public class ListAdapter extends BaseAdapter {
+public class PMTDevelopersListAdapter extends BaseAdapter {
 
 
 	
@@ -38,14 +38,14 @@ public class ListAdapter extends BaseAdapter {
 
 	/** The array list tip. */
 	
-	ArrayList<ProjectDetails> projectdetillist;
+	ArrayList<Developerdetails> developerdetillist;
 
 	/** The inflater. */
 	public LayoutInflater inflater = null;
 
 	
 
-	ProjectDetails projectDetails;
+	Developerdetails developerDetails;
 
 	/** The selected position. */
 
@@ -61,11 +61,11 @@ public class ListAdapter extends BaseAdapter {
 	 * @param con
 	 *            the con
 	 */
-	public ListAdapter(Activity listingActivity, int listrowTip,
-			ArrayList<ProjectDetails> arrayListTip, Context con) {
+	public PMTDevelopersListAdapter(Activity listingActivity, int listrowTip,
+			ArrayList<Developerdetails> arrayListTip, Context con) {
 		activity = listingActivity;
 
-		this.projectdetillist = arrayListTip;
+		this.developerdetillist = arrayListTip;
 		inflater = (LayoutInflater) activity
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
@@ -77,7 +77,7 @@ public class ListAdapter extends BaseAdapter {
 	 * @see android.widget.Adapter#getCount()
 	 */
 	public int getCount() {
-		return projectdetillist.size();
+		return developerdetillist.size();
 	}
 
 	/*
@@ -85,8 +85,8 @@ public class ListAdapter extends BaseAdapter {
 	 * 
 	 * @see android.widget.Adapter#getItem(int)
 	 */
-	public ProjectDetails getItem(int position) {
-		return projectdetillist.get(position);
+	public Developerdetails getItem(int position) {
+		return developerdetillist.get(position);
 	}
 
 	/*
@@ -109,18 +109,16 @@ public class ListAdapter extends BaseAdapter {
 		View listContentView = convertView;
 
 		if (convertView == null) {
-			listContentView = inflater.inflate(R.layout.projectlistrw, null);
+			listContentView = inflater.inflate(R.layout.developerlistrw, null);
 		}
 
-		projectDetails = projectdetillist.get(position);
-		if (projectDetails != null) {
+		developerDetails =developerdetillist .get(position);
+		if (developerDetails != null) {
 
 		
-			TextView projectnametxtview = (TextView) listContentView
+			TextView developernametxtview = (TextView) listContentView
 					.findViewById(R.id.txt_name);
-			TextView projectidtxtview = (TextView) listContentView.findViewById(R.id.txt_id1);
-	projectnametxtview.setText(projectDetails.getName());
-	projectidtxtview.setText(Integer.toString(projectDetails.getId()));
+		
 
 		}
 		return listContentView;

@@ -25,11 +25,7 @@ public class ListOfProjectsManager implements ListOfProjectsModelmanagerListner
 	public void projectList(Context mContext, String ifGetRequest) 
 	{
 
-//		LoginScreenModelManager loginScreenModelManager = new LoginScreenModelManager();
-//		loginScreenModelManager.iLoginScreenmodelManagerForgotListner=ListOfProjectsManager.this;
-//		loginScreenModelManager.projectList(mContext);
-		
-//		
+	
 		 ListOfProjectsModelManager listOfProjectsModelManager = new ListOfProjectsModelManager();
 		 listOfProjectsModelManager.IListOfProjectsModelmanagerListner=ListOfProjectsManager.this;
 		 listOfProjectsModelManager.projectList(mContext,ifGetRequest);

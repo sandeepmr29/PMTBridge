@@ -17,6 +17,8 @@
       <string name="EvaluateHistory">Evaluate History</string>
        <string name="EvaluationReportSummary">Evaluation Report Summary</string>    
        <string name="EmailCannotBeNull"> Email cannot be null</string>
+       <string name="NoProjectAdded">No Project Added</string>
+     
      
       
    

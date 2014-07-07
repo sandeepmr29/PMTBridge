@@ -9,6 +9,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.bridge.bridgepmt.helper.AsyncWebHandlerForGetApi;
+import com.bridge.bridgepmt.interfaces.ListOfDeveloperManagerListner;
 import com.bridge.bridgepmt.interfaces.ListOfDevelopersModelManagerListner;
 import com.bridge.bridgepmt.model.Developerdetails;
 import com.bridge.bridgepmt.model.ListOfDeveloperScreenReturns;
@@ -18,14 +19,14 @@ import com.google.gson.Gson;
 
 public class ListOfDeveloperModelManager
 {
-	public ListOfDevelopersModelManagerListner IListOfDevelopersModelManagerListner;
+	public ListOfDeveloperManagerListner  iListOfDeveloManagerListner;
 	 List<Developerdetails> developerDetails;
 	 public  ListOfDeveloperModelManager()
 		{
 			
 		}
 
-	 public void projectList(Context mContext, String ifGetRequest) 
+	 public void  developerList(Context mContext, String ifGetRequest) 
 		{
 		 new AsyncWebHandlerForGetApi() {
 
@@ -47,7 +48,7 @@ public class ListOfDeveloperModelManager
 //						 developerDetails= listOfDeveloperScreenReturns.getProjects();
 						 
 //						 IListOfProjectsModelmanagerListner.onDidFinished(listOfProjectScreenReturns);
-
+                         iListOfDeveloManagerListner.developersListFinished(listOfDeveloperScreenReturns);
 					  } catch (Exception ex) {
 					   
 					   Log.e("error", ex.getMessage());

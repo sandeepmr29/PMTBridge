@@ -4,11 +4,13 @@ import android.content.Context;
 
 import com.bridge.bridgepmt.interfaces.ListOfDeveloperManagerListner;
 import com.bridge.bridgepmt.interfaces.ListOfDevelopersModelManagerListner;
+import com.bridge.bridgepmt.model.Developerdetails;
+import com.bridge.bridgepmt.model.ListOfDeveloperScreenReturns;
 import com.bridge.bridgepmt.modelmanager.ListOfDeveloperModelManager;
 import com.bridge.bridgepmt.modelmanager.ListOfProjectsModelManager;
 
 
-public class ListOfDeveloperManager implements ListOfDevelopersModelManagerListner
+public class ListOfDeveloperManager implements ListOfDeveloperManagerListner
 {
 	 public ListOfDeveloperManagerListner IListOfDeveloperManagerListner;
 	 
@@ -21,9 +23,18 @@ public class ListOfDeveloperManager implements ListOfDevelopersModelManagerListn
 	{
 //		
 		 ListOfDeveloperModelManager listOfDeveloperModelManager = new ListOfDeveloperModelManager();
-		 listOfDeveloperModelManager.IListOfDevelopersModelManagerListner=ListOfDeveloperManager.this;
-		 listOfDeveloperModelManager.projectList(mContext,ifGetRequest);
+		 listOfDeveloperModelManager.iListOfDeveloManagerListner=ListOfDeveloperManager.this;
+		 listOfDeveloperModelManager.developerList(mContext,ifGetRequest);
 
 	}
+
+	@Override
+	public void developersListFinished(
+			ListOfDeveloperScreenReturns mListofDevelopers) {
+		// TODO Auto-generated method stub
+		IListOfDeveloperManagerListner.developersListFinished(mListofDevelopers);
+	}
+
+
 
 }

@@ -1,5 +1,9 @@
 package com.bridge.bridgepmt.interfaces;
 
-public interface ListOfDeveloperManagerListner {
+import com.bridge.bridgepmt.model.ListOfDeveloperScreenReturns;
+
+public interface ListOfDeveloperManagerListner 
+{
+	 public void developersListFinished(ListOfDeveloperScreenReturns mListofDevelopers);
 
 }
