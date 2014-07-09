@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.bridge.bridgepmt.activities.R;
 import com.bridge.bridgepmt.adapters.ListAdapter;
+import com.bridge.bridgepmt.app.Bridgepmt;
 import com.bridge.bridgepmt.interfaces.ListOfProjectsManagerListner;
 import com.bridge.bridgepmt.model.ListOfProjectScreenReturns;
 import com.bridge.bridgepmt.model.LoginScreenReturn;
@@ -38,7 +39,7 @@ public class ListOfProjectsFragments extends Fragment implements ListOfProjectsM
 	 Context  mContext;
 	 ArrayList<ProjectDetails> projectdetails;
 	 String ifGetRequest ="get";
-	 ProgressDialog  pd;
+	 ProgressDialog  mprogressdialog;
 	Fragment mListofdeveloperFragment;
 	
 	 public ListOfProjectsFragments() {
@@ -49,8 +50,8 @@ public class ListOfProjectsFragments extends Fragment implements ListOfProjectsM
 	        View view = inflater.inflate(R.layout.fragment_projectlist, container, false);
 	       
 	        listView= (ListView) view.findViewById(R.id.list);
-	        pd = new ProgressDialog(getActivity());
-			pd.setMessage("loading");
+	        mprogressdialog = new ProgressDialog(getActivity());
+	        mprogressdialog.setMessage("loading");
 	        
 	        return view;
 	    }
@@ -71,7 +72,8 @@ public class ListOfProjectsFragments extends Fragment implements ListOfProjectsM
 	 
 	private void loadList() 
 	{
-		pd.show();
+		mprogressdialog.show();
+		mprogressdialog.setContentView(R.layout.custom_prgressdailog);
 		if(SMUtility.isNetworkAvailable(getActivity())==true)
 		{
 			 ListOfProjectsManager listOfProjectsManager = new ListOfProjectsManager();
@@ -82,7 +84,7 @@ public class ListOfProjectsFragments extends Fragment implements ListOfProjectsM
 		else
 		{
 			SMUtility.buildAlertMessage(getActivity(), getResources().getString(R.string.NoInternetConnection));
-			pd.dismiss();
+			mprogressdialog.dismiss();
 		}
 		
 		
@@ -107,22 +109,23 @@ public class ListOfProjectsFragments extends Fragment implements ListOfProjectsM
 			    long id) {
 			   // TODO Auto-generated method stub
 			   TextView midtxtview=(TextView)view.findViewById(R.id.txt_id1);
-			   Bundle b=new Bundle();
-			   b.putString("id", midtxtview.getText().toString());
+//			   Bundle b=new Bundle();
+//			   b.putString("id", midtxtview.getText().toString());
+			   
+			   Bridgepmt.setProjectid(projectdetails.get(position).getId());
+			   
 			  mListofdeveloperFragment=new ListOfDeveloperFragment();
-			  mListofdeveloperFragment.setArguments(b);
+			  
 			  
 			  FragmentChangeActivity fragmentChangeActivity=  (FragmentChangeActivity) getActivity();
 			  fragmentChangeActivity.switchContent(mListofdeveloperFragment);
-			  
-			  
-			  
+	  
 			  
 			  }
 			 });
 	  
 	  
-	  pd.dismiss();
+	  mprogressdialog.dismiss();
 	  }
 	  else
   	  {

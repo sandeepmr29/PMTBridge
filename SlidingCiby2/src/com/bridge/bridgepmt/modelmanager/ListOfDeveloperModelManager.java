@@ -8,6 +8,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 import android.content.Context;
 import android.util.Log;
 
+import com.bridge.bridgepmt.app.Bridgepmt;
 import com.bridge.bridgepmt.helper.AsyncWebHandlerForGetApi;
 import com.bridge.bridgepmt.interfaces.ListOfDeveloperManagerListner;
 import com.bridge.bridgepmt.interfaces.ListOfDevelopersModelManagerListner;
@@ -28,11 +29,15 @@ public class ListOfDeveloperModelManager
 
 	 public void  developerList(Context mContext, String ifGetRequest) 
 		{
+		
+		 
 		 new AsyncWebHandlerForGetApi() {
 
 				@Override
 				public HttpUriRequest getHttpRequestMethod() {
-					HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/activedevelopers/1003");
+					
+					
+					HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/activedevelopers/"+Bridgepmt.getProjectid());
 					return httpget;
 					
 				}

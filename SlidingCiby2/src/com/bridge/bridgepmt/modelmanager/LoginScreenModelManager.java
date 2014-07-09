@@ -32,24 +32,17 @@ public class LoginScreenModelManager
 	 public ListOfProjectsModelmanagerListner IListOfProjectsModelmanagerListner;
 	
 	Context mcontext;
-//	 private String UserName;
-//	 private String PassWord;
-//	 private String Email;
+
 	
 
 	
 	public LoginScreenModelManager() 
 	{
-//		UserName=userName;
-//		PassWord=passWord;
+
 		
 	}
 	
-//	public LoginScreenModelManager(String email2) 
-//	{
-//		Email=email2;
-//
-//	}
+
 
 	public void loginProcess(final Context mContext,final String username, final String password, String method) 
 	{

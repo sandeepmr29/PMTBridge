@@ -118,7 +118,12 @@ public class PMTDevelopersListAdapter extends BaseAdapter {
 		
 			TextView developernametxtview = (TextView) listContentView
 					.findViewById(R.id.txt_name);
-		
+			
+			TextView developerId = (TextView) listContentView
+					.findViewById(R.id.txt_id1);
+			
+			developernametxtview.setText(developerDetails.getName());
+			developerId.setText(Integer.toString(developerDetails.user_id));
 
 		}
 		return listContentView;

@@ -2,6 +2,7 @@ package com.bridge.bridgepmt.fragments;
 
 import java.util.ArrayList;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,15 +10,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.bridge.bridgepmt.activities.R;
 import com.bridge.bridgepmt.adapters.ListAdapter;
 import com.bridge.bridgepmt.adapters.PMTDevelopersListAdapter;
+import com.bridge.bridgepmt.app.Bridgepmt;
 import com.bridge.bridgepmt.interfaces.ListOfDeveloperManagerListner;
 import com.bridge.bridgepmt.model.Developerdetails;
 import com.bridge.bridgepmt.model.ListOfDeveloperScreenReturns;
+import com.bridge.bridgepmt.model.PMTListOfPendingMonthScreenReturns;
 import com.bridge.bridgepmt.model.ProjectDetails;
+import com.bridge.bridgepmt.utilities.SMUtility;
 import com.bridge.bridgepmt.viewmanager.ListOfDeveloperManager;
 
 public class ListOfDeveloperFragment extends Fragment implements ListOfDeveloperManagerListner
@@ -29,6 +36,8 @@ public class ListOfDeveloperFragment extends Fragment implements ListOfDeveloper
 	 ArrayList<Developerdetails> developerdetails;
 	 Bundle c;
 	 String id;
+	 ProgressDialog  mprogressbar;
+	 Fragment mListOfPendingMonthFragment;
 	 public ListOfDeveloperFragment() {
 	    }
 	 
@@ -37,7 +46,8 @@ public class ListOfDeveloperFragment extends Fragment implements ListOfDeveloper
 	        View view = inflater.inflate(R.layout.fragment_developerlist, container, false);
 	       
 	        listView= (ListView) view.findViewById(R.id.list);
-	        
+	        mprogressbar = new ProgressDialog(getActivity());
+	        mprogressbar.setMessage("loading");
 	        
 	        return view;
 	    }
@@ -45,10 +55,11 @@ public class ListOfDeveloperFragment extends Fragment implements ListOfDeveloper
 		public void onActivityCreated(Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
 			super.onActivityCreated(savedInstanceState);
-	     c=getArguments();
-         id=c.getString("id");
-         Log.e("project id",id);
-			loadDevelopersList();
+	    
+        
+        
+    
+		   loadDevelopersList();
 			
 			
 
@@ -57,10 +68,19 @@ public class ListOfDeveloperFragment extends Fragment implements ListOfDeveloper
 
 	private void loadDevelopersList() 
 	{
+		mprogressbar.show();
+		mprogressbar.setContentView(R.layout.custom_prgressdailog);
+		if(SMUtility.isNetworkAvailable(getActivity())==true)
+		{
 		 ListOfDeveloperManager listOfDeveloperManager = new ListOfDeveloperManager();
 		 listOfDeveloperManager.IListOfDeveloperManagerListner=ListOfDeveloperFragment.this;
 		 listOfDeveloperManager.developers(mContext,ifGetRequest);
-		
+		}
+		else
+		{
+			SMUtility.buildAlertMessage(getActivity(), getResources().getString(R.string.NoInternetConnection));
+			mprogressbar.dismiss();
+		}
 	}
 
 	@Override
@@ -77,8 +97,38 @@ public class ListOfDeveloperFragment extends Fragment implements ListOfDeveloper
 		        R.layout.developerlistrw, developerdetails, getActivity());
 		  
 		  listView.setAdapter(mListAdapter);
+		  
+		  listView.setOnItemClickListener(new OnItemClickListener() {
+
+			  public void onItemClick(AdapterView<?> parent, View view, int position,
+					    long id) {
+					   // TODO Auto-generated method stub
+					 
+
+					   
+					   Bridgepmt.setDeveloperid(developerdetails.get(position).getUser_id());
+					   
+					  mListOfPendingMonthFragment=new ListOfPendingMonthFragment();
+					  
+					  FragmentChangeActivity fragmentChangeActivity=  (FragmentChangeActivity) getActivity();
+					  fragmentChangeActivity.switchContent(mListOfPendingMonthFragment);
+
+					  
+					  }
+					 });
+		  
+		  
+		  mprogressbar.dismiss();
 	}
+		  else
+	  	  {
+	  		
+	  		SMUtility.buildAlertMessage(getActivity(), getResources().getString(R.string.NoDevelopersFound));
+				
+	  	  }
 	}
+
+
 
 
 }

@@ -18,6 +18,9 @@
        <string name="EvaluationReportSummary">Evaluation Report Summary</string>    
        <string name="EmailCannotBeNull"> Email cannot be null</string>
        <string name="NoProjectAdded">No Project Added</string>
+        <string name="NoDevelopersFound">No Developers Found</string>
+          <string name="NoPendingMonths">No Pending Months</string>
+       
      
      
       

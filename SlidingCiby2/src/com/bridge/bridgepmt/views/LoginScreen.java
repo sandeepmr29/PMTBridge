@@ -1,6 +1,7 @@
 package com.bridge.bridgepmt.views;
 
 import com.bridge.bridgepmt.activities.R;
+import com.bridge.bridgepmt.app.Bridgepmt;
 import com.bridge.bridgepmt.fragments.FragmentChangeActivity;
 import com.bridge.bridgepmt.interfaces.LoginScreenManagerForgotListner;
 import com.bridge.bridgepmt.interfaces.LoginScreenManagerListner;
@@ -56,7 +57,11 @@ public class LoginScreen extends Activity implements LoginScreenManagerListner,L
     	metPassword = (EditText)findViewById(R.id.etpassword);
     	mbtnlogin   = (Button)findViewById(R.id.btnlogin);
     	mtvforgotpassword = (TextView)findViewById(R.id.tvforgotpassword);
+    	
+    
+
     	 pd = new ProgressDialog(LoginScreen.this);
+    		
 			pd.setMessage("loading");
     	
     	
@@ -81,6 +86,7 @@ public class LoginScreen extends Activity implements LoginScreenManagerListner,L
 			{
 			   
 				pd.show();
+				pd.setContentView(R.layout.custom_prgressdailog);
 				
 				if(SMUtility.isCredentialsnull(LoginScreen.this, metUsername.getText().toString(), metPassword.getText().toString())==true)
 				{
@@ -137,6 +143,7 @@ public class LoginScreen extends Activity implements LoginScreenManagerListner,L
 	                            {
 //	                                dialog.dismiss();
 	                            	pd.show();
+	                            	pd.setContentView(R.layout.custom_prgressdailog);
 	                            	
 	                            	if(SMUtility.isEmail(LoginScreen.this, meditTextDialogUserInput.getText().toString())==true)
 	                				{
@@ -174,6 +181,8 @@ public class LoginScreen extends Activity implements LoginScreenManagerListner,L
 	    	
 	    		if(loginDetails.getStatus().equals("success"))
 		    	{
+	    			 Bridgepmt.setClientid(loginDetails.getUser().getId());
+	    			 Bridgepmt.setAccessToken(loginDetails.getUser().getAccessToken());
 		    		
 		    		 Intent in = new Intent(getApplicationContext(), FragmentChangeActivity.class);
 		             startActivity(in);

@@ -1,11 +1,10 @@
 package com.bridge.bridgepmt.viewmanager;
 
-import com.bridge.bridgepmt.interfaces.ListOfProjectsManagerListner;
-import com.bridge.bridgepmt.interfaces.PMTListOfPenMonthManagerListner;
-import com.bridge.bridgepmt.modelmanager.ListOfDeveloperModelManager;
-import com.bridge.bridgepmt.modelmanager.PMTListOfPendingMonthModelManager;
-
 import android.content.Context;
+
+import com.bridge.bridgepmt.interfaces.PMTListOfPenMonthManagerListner;
+import com.bridge.bridgepmt.model.PMTListOfPendingMonthScreenReturns;
+import com.bridge.bridgepmt.modelmanager.PMTListOfPendingMonthModelManager;
 
 public class ListOfPendingMonthManager implements PMTListOfPenMonthManagerListner{
 	 public PMTListOfPenMonthManagerListner IPMTListOfPenMonthManagerListner;
@@ -21,6 +20,15 @@ public class ListOfPendingMonthManager implements PMTListOfPenMonthManagerListne
 		 PMTListOfPendingMonthModelManager pMTListOfPendingMonthModelManager = new PMTListOfPendingMonthModelManager();
 		 pMTListOfPendingMonthModelManager.IPMTListOfPenMonthManagerListner=ListOfPendingMonthManager.this;
 		 pMTListOfPendingMonthModelManager.pendingMonth(mContext,ifGetRequest);
+		
+	}
+
+
+	@Override
+	public void pendingmonthListFinished(
+			PMTListOfPendingMonthScreenReturns pMTListOfPendingMonthScreenReturns) 
+	{
+		IPMTListOfPenMonthManagerListner.pendingmonthListFinished(pMTListOfPendingMonthScreenReturns);
 		
 	}
 
