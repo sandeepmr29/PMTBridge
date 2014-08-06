@@ -8,6 +8,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 import android.content.Context;
 import android.util.Log;
 
+import com.bridge.bridgepmt.app.Bridgepmt;
 import com.bridge.bridgepmt.helper.AsyncWebHandlerForGetApi;
 import com.bridge.bridgepmt.interfaces.ListOfProjectsModelmanagerListner;
 import com.bridge.bridgepmt.model.ListOfProjectScreenReturns;
@@ -49,7 +50,7 @@ public class ListOfProjectsModelManager
 			
 			@Override
 			public HttpUriRequest getHttpRequestMethod() {
-				HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/activeprojects/745");
+				HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/activeprojects/"+Bridgepmt.getClientid()+"/"+Bridgepmt.getAccessToken());
 				return httpget;
 			}
 

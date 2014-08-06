@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.message.BasicNameValuePair;
@@ -14,13 +13,11 @@ import org.apache.http.message.BasicNameValuePair;
 import android.content.Context;
 import android.util.Log;
 
-import com.bridge.bridgepmt.activities.R;
 import com.bridge.bridgepmt.helper.AsyncWebHandler;
 import com.bridge.bridgepmt.interfaces.ListOfProjectsModelmanagerListner;
 import com.bridge.bridgepmt.interfaces.LoginScreenModelManagerListner;
 import com.bridge.bridgepmt.interfaces.LoginScreenmodelManagerForgotListner;
 import com.bridge.bridgepmt.model.ForgotScreenReturn;
-import com.bridge.bridgepmt.model.User;
 import com.bridge.bridgepmt.model.LoginScreenReturn;
 import com.google.gson.Gson;
 
@@ -55,7 +52,7 @@ public class LoginScreenModelManager
 			{
 				Log.e("result","username" );
 				
-				HttpPost httppost = new HttpPost("http://10.0.0.113:8080/api/login");
+				HttpPost httppost = new HttpPost(("http://10.0.0.113:8080/api/login"));
 					 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 					 nameValuePairs.add(new BasicNameValuePair("username",username));
 			         nameValuePairs.add(new BasicNameValuePair("password",password));

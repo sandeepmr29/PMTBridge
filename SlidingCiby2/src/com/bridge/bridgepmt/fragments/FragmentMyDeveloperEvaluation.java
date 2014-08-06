@@ -4,6 +4,9 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +38,23 @@ public class FragmentMyDeveloperEvaluation extends Fragment {
     
         mbtnEvaluateDev=(Button)view.findViewById(R.id.btnEvaluateDev);
         
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    Log.i("tag", "keyCode: " + keyCode);
+                    if( keyCode == KeyEvent.KEYCODE_BACK ) {
+                            Log.i("tag", "onKey Back listener is working!!!");
+                        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+        
+        
         return view;
         
     }
@@ -45,16 +65,16 @@ public class FragmentMyDeveloperEvaluation extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		final FragmentActivity i=		getActivity();
-		SlidingFragmentActivity k=(SlidingFragmentActivity)i;
-		View v=k.getSupportActionBar().getCustomView();
-			 //    View v=getS
-			     TextView mhead=(TextView)v.findViewById(R.id.mytext);
-			    
-			     
-					Typeface signupfont=Typeface.createFromAsset(getActivity().getAssets(),"fonts/MuseoSans-300.otf"); 
-					mhead.setTypeface(signupfont);
-			     mhead.setText("Developer Evaluation");
+//		final FragmentActivity i=		getActivity();
+//		SlidingFragmentActivity k=(SlidingFragmentActivity)i;
+//		View v=k.getSupportActionBar().getCustomView();
+//			 //    View v=getS
+//			     TextView mhead=(TextView)v.findViewById(R.id.mytext);
+//			    
+//			     
+//					Typeface signupfont=Typeface.createFromAsset(getActivity().getAssets(),"fonts/MuseoSans-300.otf"); 
+//					mhead.setTypeface(signupfont);
+//			     mhead.setText("Developer Evaluation");
 
 			     
 			     mbtnEvaluateDev.setOnClickListener(new View.OnClickListener() {

@@ -29,7 +29,7 @@ public class FragmentListView extends Fragment {
             Bundle savedInstanceState) {
     	
   
-        View view = inflater.inflate(R.layout.fragment_listview, null);
+        View view = inflater.inflate(R.layout.fragment_hoursheetreport, null);
     
         String[] listViewItems = new String[] { "Symbian", "iOS", "Windows Phone", "Blackberry", "Meego", "Symbian", "Blackberry", "Meego", "Symbian", "Blackberry", "Meego", "Symbian"};
         listView = (ListView) view.findViewById(R.id.fragment_listview_listview);

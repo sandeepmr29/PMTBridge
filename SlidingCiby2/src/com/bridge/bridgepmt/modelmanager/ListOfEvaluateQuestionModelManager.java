@@ -19,11 +19,13 @@ import com.bridge.bridgepmt.app.Bridgepmt;
 import com.bridge.bridgepmt.helper.AsyncWebHandler;
 import com.bridge.bridgepmt.helper.AsyncWebHandlerForGetApi;
 import com.bridge.bridgepmt.interfaces.ListOfEvaluateQuestionManagerListner;
+import com.bridge.bridgepmt.interfaces.PMTQuestionAnswerPOstListner;
 import com.bridge.bridgepmt.model.PMTEvaluationQuestionsScreenReturns;
 import com.google.gson.Gson;
 
 public class ListOfEvaluateQuestionModelManager {
 	 public ListOfEvaluateQuestionManagerListner IListOfEvaluateQuestionManagerListner;
+	public PMTQuestionAnswerPOstListner IPMTQuestionAnswerPOstListner;
 	 
 	
 	public  ListOfEvaluateQuestionModelManager()
@@ -38,7 +40,8 @@ public class ListOfEvaluateQuestionModelManager {
 
 			@Override
 			public HttpUriRequest getHttpRequestMethod() {
-				HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/evaluationquestions");
+				HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/evaluationquestions/"+Bridgepmt.getClientid()
+						+"/"+Bridgepmt.getAccessToken());
 				return httpget;
 			}
 
@@ -54,6 +57,8 @@ public class ListOfEvaluateQuestionModelManager {
 						 
 //						 IListOfProjectsModelmanagerListner.onDidFinished(listOfProjectScreenReturns);
 					  IListOfEvaluateQuestionManagerListner.evaluateQuestionFinished(pMTEvaluationQuestionsScreenReturns);
+					  
+//					  IPMTQuestionAnswerPOstListner.postSuccess(pMTEvaluationQuestionsScreenReturns);
 				  } catch (Exception ex) {
 				   
 				   Log.e("error", ex.getMessage());
@@ -69,7 +74,7 @@ public class ListOfEvaluateQuestionModelManager {
 	}
 
 
-	public void postEvaluatedAnswers(Context mContext, String method, final String date, final int year)
+	public void postEvaluatedAnswers(Context mContext, String method, final String date, final int year, final ArrayList<String> mannschaftsnamen)
 	{
 		new AsyncWebHandler() {
 
@@ -80,26 +85,27 @@ public class ListOfEvaluateQuestionModelManager {
 //						"devid"+":"+"791"+","+"month"+":"+"4"+","+"year"+":"+"2014"+","+"date"+":"+"2014-07-08"+","+"answers"+":"+"1"+":"+"2"+","+"3"+":"+"5"+","+"3"+":"+"7");
 						
 				HttpPost httppost = new HttpPost("http://10.0.0.113:8080/api/submitevaluation");
-//				 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-//				 nameValuePairs.add(new BasicNameValuePair("token",Bridgepmt.getAccessToken()));
-//		         nameValuePairs.add(new BasicNameValuePair("survey_id",Integer.toString(Bridgepmt.getSurvey_id())));
-//		         nameValuePairs.add(new BasicNameValuePair("client_id",Integer.toString(Bridgepmt.getClientid())));
-//		         nameValuePairs.add(new BasicNameValuePair("devid",Integer.toString(Bridgepmt.getDeveloperid())));
-//		         nameValuePairs.add(new BasicNameValuePair("month",Integer.toString(Bridgepmt.getMonth())));
-//		         nameValuePairs.add(new BasicNameValuePair("year",Integer.toString(year)));
-//		         nameValuePairs.add(new BasicNameValuePair("date",date));
+				 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+				 nameValuePairs.add(new BasicNameValuePair("token",Bridgepmt.getAccessToken()));
+		         nameValuePairs.add(new BasicNameValuePair("survey_id",Integer.toString(Bridgepmt.getSurvey_id())));
+		         nameValuePairs.add(new BasicNameValuePair("client_id",Integer.toString(Bridgepmt.getClientid())));
+		         nameValuePairs.add(new BasicNameValuePair("devid",Integer.toString(Bridgepmt.getDeveloperid())));
+		         nameValuePairs.add(new BasicNameValuePair("month",Integer.toString(Bridgepmt.getMonth())));
+		         nameValuePairs.add(new BasicNameValuePair("year",Integer.toString(year)));
+		         nameValuePairs.add(new BasicNameValuePair("date",date));
 //		         nameValuePairs.add(new BasicNameValuePair("answers",":"+"1"+":"+"2"+","+"3"+":"+"5"+","+"3"+":"+"7"));
+		         nameValuePairs.add(new BasicNameValuePair("answers",mannschaftsnamen.toString()));
 		         
-//		         try {
-//					httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-//				} catch (UnsupportedEncodingException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//		         catch(Exception e)
-//		         {
-//		        	 Log.e("Error", "Error");
-//		         }
+		         try {
+					httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		         catch(Exception e)
+		         {
+		        	 Log.e("Error", "Error");
+		         }
 				
 				return httppost;
 			}
@@ -107,8 +113,24 @@ public class ListOfEvaluateQuestionModelManager {
 			@Override
 			public void onResponse(String result) 
 			{
-				// TODO Auto-generated method stub
 				
+        PMTEvaluationQuestionsScreenReturns pMTEvaluationQuestionsScreenReturns = null;
+				
+				Gson gson = new Gson();
+				
+				 try {
+					 pMTEvaluationQuestionsScreenReturns=gson.fromJson(result, PMTEvaluationQuestionsScreenReturns.class);
+//						 developerDetails= listOfDeveloperScreenReturns.getProjects();
+						 
+//						 IListOfProjectsModelmanagerListner.onDidFinished(listOfProjectScreenReturns);
+//					  IListOfEvaluateQuestionManagerListner.evaluateQuestionFinished(pMTEvaluationQuestionsScreenReturns);
+					  
+					  IPMTQuestionAnswerPOstListner.postSuccess(pMTEvaluationQuestionsScreenReturns);
+				  } catch (Exception ex) {
+				   
+				   Log.e("error", ex.getMessage());
+				   
+				  }
 			}
 			
 		}.execute(method);

@@ -34,7 +34,7 @@ public class LoginScreen extends Activity implements LoginScreenManagerListner,L
 	Context         mContext;
 	EditText        metUsername;
 	EditText        metPassword;
-	Button          mbtnlogin;
+	TextView        mtvlogin;
 	ProgressDialog  pd;
 	TextView        mtvforgotpassword;
 	String method = "post";
@@ -55,7 +55,7 @@ public class LoginScreen extends Activity implements LoginScreenManagerListner,L
     {
     	metUsername = (EditText)findViewById(R.id.etusername);
     	metPassword = (EditText)findViewById(R.id.etpassword);
-    	mbtnlogin   = (Button)findViewById(R.id.btnlogin);
+    	mtvlogin   = (TextView)findViewById(R.id.tvlogin);
     	mtvforgotpassword = (TextView)findViewById(R.id.tvforgotpassword);
     	
     
@@ -79,7 +79,7 @@ public class LoginScreen extends Activity implements LoginScreenManagerListner,L
 		});
     	
     	
-    	mbtnlogin.setOnClickListener(new View.OnClickListener() {
+    	mtvlogin.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) 
@@ -186,6 +186,7 @@ public class LoginScreen extends Activity implements LoginScreenManagerListner,L
 		    		
 		    		 Intent in = new Intent(getApplicationContext(), FragmentChangeActivity.class);
 		             startActivity(in);
+		             finish();
 		    	}
 		    	else
 		    	{

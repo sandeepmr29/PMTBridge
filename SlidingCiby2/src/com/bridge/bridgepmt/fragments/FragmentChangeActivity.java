@@ -28,7 +28,7 @@ public class FragmentChangeActivity extends BaseActivity {
 			if (savedInstanceState != null)
 				mContent = getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
 			if (mContent == null)
-				mContent = new FragmentMyProfile1() ;
+				mContent = new FragmentMyProfile() ;
 			
 			
 		}
@@ -37,7 +37,7 @@ public class FragmentChangeActivity extends BaseActivity {
 			if (savedInstanceState != null)
 			mContent = getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
 		if (mContent == null)
-			mContent = new FragmentMyDeveloperEvaluation1();
+			mContent = new FragmentMyDeveloperEvaluation();
 		}
 
 

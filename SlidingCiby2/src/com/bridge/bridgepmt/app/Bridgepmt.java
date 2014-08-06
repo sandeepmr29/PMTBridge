@@ -4,8 +4,6 @@ package com.bridge.bridgepmt.app;
 
 import java.io.File;
 
-
-
 import android.app.Application;
 
 public class Bridgepmt extends Application
@@ -21,11 +19,6 @@ public class Bridgepmt extends Application
 	private static int month;
 	
 	
-
-
-	
-
-
 	@Override
 	public void onCreate() {
 		super.onCreate();

@@ -17,8 +17,8 @@ import android.widget.TextView;
 
 
 public class FragmentCheckBox extends Fragment {
-    CheckBox checkBox1;
-    CheckBox checkBox2;
+//    CheckBox checkBox1;
+//    CheckBox checkBox2;
     TextView mTitletxtview;
     public FragmentCheckBox() {
     }
@@ -26,10 +26,10 @@ public class FragmentCheckBox extends Fragment {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB) @SuppressLint("NewApi") @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_checkbox, null);
+        View view = inflater.inflate(R.layout.fragment_contactus, null);
     
-        checkBox1 = (CheckBox) view.findViewById(R.id.fragment_checkbox_checkbox1);
-        checkBox2 = (CheckBox) view.findViewById(R.id.fragment_checkbox_checkbox2);
+//        checkBox1 = (CheckBox) view.findViewById(R.id.fragment_checkbox_checkbox1);
+//        checkBox2 = (CheckBox) view.findViewById(R.id.fragment_checkbox_checkbox2);
         View v=getActivity().getActionBar().getCustomView();
         
         return view;

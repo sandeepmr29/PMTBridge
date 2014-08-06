@@ -96,10 +96,10 @@ public class ColorMenuFragment1 extends ListFragment {
 			newContent = new FragmentMyLogout();
 			break;
 		case 3:
-			newContent = new FragmentMyContactUs();
+			newContent = new FragmentMyProfile();
 			break;
 		case 4:
-			newContent = new FragmentMyProfile();
+			newContent = new FragmentMyContactUs();
 			break;
 		
 	case 5:

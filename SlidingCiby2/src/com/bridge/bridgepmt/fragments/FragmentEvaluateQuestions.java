@@ -3,6 +3,7 @@ package com.bridge.bridgepmt.fragments;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.json.JSONObject;
 
@@ -12,6 +13,7 @@ import com.bridge.bridgepmt.adapters.PMTEvaluateQuestionAdapter;
 import com.bridge.bridgepmt.app.Bridgepmt;
 import com.bridge.bridgepmt.interfaces.ListOfEvaluateQuestionManagerListner;
 import com.bridge.bridgepmt.interfaces.PMTListOfPenMonthManagerListner;
+import com.bridge.bridgepmt.interfaces.PMTQuestionAnswerPOstListner;
 import com.bridge.bridgepmt.model.Developerdetails;
 import com.bridge.bridgepmt.model.EvaluationQuestiondetails;
 import com.bridge.bridgepmt.model.PMTEvaluationQuestionsScreenReturns;
@@ -23,23 +25,27 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.format.Time;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class FragmentEvaluateQuestions extends Fragment implements ListOfEvaluateQuestionManagerListner
+public class FragmentEvaluateQuestions extends Fragment implements ListOfEvaluateQuestionManagerListner ,PMTQuestionAnswerPOstListner
 {
-	 ListView listView;
+
 	 Context  mContext;
 	 String ifGetRequest ="get";
 	 private PMTEvaluateQuestionAdapter mListAdapter;
@@ -47,20 +53,35 @@ public class FragmentEvaluateQuestions extends Fragment implements ListOfEvaluat
 	 ProgressDialog  mprogressbar;
 	 Button          mbtnSubmit;
 	 String method = "post";
+	 Fragment  mFragmentMyDeveloperEvaluation;
+	 LayoutInflater inflater1;
+	 View parentView;
+	 View childView;
+	 LinearLayout l;
+     View view;
+     EditText medittext;
+     EditText ed;
+	 List<EditText> allEds = new ArrayList<EditText>();
 	 
-	 public FragmentEvaluateQuestions() {
-	    }
 	 
+	 public FragmentEvaluateQuestions() 
+	 {
+		 
+	 }
 	 
+	
 	 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	            Bundle savedInstanceState) {
-	        View view = inflater.inflate(R.layout.fragment_evaluatequestions, container, false);
-	       
-	        listView= (ListView) view.findViewById(R.id.list);
+		 view  = inflater.inflate(R.layout.fragment_evaluatequestions, container, false);
+	        this.inflater1=inflater;
+
 	        mbtnSubmit=(Button) view.findViewById(R.id.btnSubmit);
 
 	        mprogressbar = new ProgressDialog(getActivity());
 	        mprogressbar.setMessage("loading");
+	        
+	        loadQuestions();
+	      
 	        return view;
 	    }
 	 
@@ -69,11 +90,8 @@ public class FragmentEvaluateQuestions extends Fragment implements ListOfEvaluat
 			// TODO Auto-generated method stub
 			super.onActivityCreated(savedInstanceState);
 			
-		
-			loadQuestions();
-		    buttonOnclick();
-			
 
+		    buttonOnclick();
 			
 	 }
 
@@ -86,30 +104,19 @@ public class FragmentEvaluateQuestions extends Fragment implements ListOfEvaluat
 			public void onClick(View v) 
 			{
 				 
-			
+				String[] strings=new String[allEds.size()];
+				
 				 ArrayList<String> mannschaftsnamen = new ArrayList<String>();
-				 for(int i =0;i<listView.getCount();i++)
+				 for(int i=0; i < allEds.size(); i++)
 				    {
-					 
-					 Bridgepmt.setSurvey_id(evaluatequestiondetails.get(i).getSurvey_id());
-					    RelativeLayout layout =(RelativeLayout) listView.getChildAt(0);
 
-//					    TextView text = (TextView)layout.getChildAt(0);
-//					    text.getText();
-					    EditText editText = (EditText)layout.getChildAt(2);
-					    editText.getText();
-					    mannschaftsnamen.add(String.valueOf(editText.getText()));
-					    
-					  
-//					    	EditText et = (EditText) layout.getChildAt(i).findViewById(R.id.etrating);
-//					        if (et!=null) {
-//					           mannschaftsnamen.add(String.valueOf(et.getText()));
-//
-//					           /** you can try to log your values EditText */
-////					           Log.v("ypgs", String.valueOf(et.getText()));
-//					       
-//					    }
-//					 
+					 Bridgepmt.setSurvey_id(evaluatequestiondetails.get(i).getSurvey_id());					
+					 int questionid=evaluatequestiondetails.get(i).getId();
+
+					 strings[i] = allEds.get(i).getText().toString();
+					 Log.e("values",strings[i].toString());
+					    mannschaftsnamen.add(String.valueOf(questionid+":"+strings[i]));
+				 
 					}  
 				
 				 Log.v("ypgs", String.valueOf(mannschaftsnamen));
@@ -125,36 +132,14 @@ public class FragmentEvaluateQuestions extends Fragment implements ListOfEvaluat
 				
 				
 				ListOfEvaluateQuestionManager listOfEvaluateQuestionManager = new ListOfEvaluateQuestionManager();
-				listOfEvaluateQuestionManager.IListOfEvaluateQuestionManagerListner=FragmentEvaluateQuestions.this;
-				listOfEvaluateQuestionManager.postAnswers(mContext,method,date,today.year);
+				listOfEvaluateQuestionManager.IPMTQuestionAnswerPOstListner=FragmentEvaluateQuestions.this;
+				listOfEvaluateQuestionManager.postAnswers(mContext,method,date,today.year,mannschaftsnamen);
 			}
 		});
 	}
 
 
-//	protected void loadSubmitDetails() 
-//	{
-//		Time today = new Time(Time.getCurrentTimezone());
-//		today.setToNow();
-//		
-//		Log.e("date", today.setToNow);
-//		 try {
-//			  JSONObject submitdetails=new JSONObject();
-//			  submitdetails.accumulate("token",);
-//			  submitdetails.accumulate("survey_id", Bridgepmt.getSurvey_id());
-//			  submitdetails.accumulate("client_id", Bridgepmt.getClientid());
-//			  submitdetails.accumulate("devid", Bridgepmt.getDeveloperid());
-//			  submitdetails.accumulate("month", Bridgepmt.getMonth());
-//			  
-//			  Log.e("json string",submitdetails.toString());
-//			  }
-//			  catch(Exception e)
-//			  {
-//			   
-//			  }
-//		
-//		
-//	}
+
 
 
 	private void loadQuestions() 
@@ -181,35 +166,47 @@ public class FragmentEvaluateQuestions extends Fragment implements ListOfEvaluat
 			PMTEvaluationQuestionsScreenReturns pMTEvaluationQuestionsScreenReturns) 
 	{
 		evaluatequestiondetails=pMTEvaluationQuestionsScreenReturns.getQuestions();
+
 		
-		 if(evaluatequestiondetails!=null)
-		  {
-//			 Bridgepmt.setSurvey_id(evaluatequestiondetails.get(getId()).getSurvey_id());
-			 
-			 
-			 mListAdapter = new PMTEvaluateQuestionAdapter(getActivity(),
-				        R.layout.evaluatequestionrw, evaluatequestiondetails, getActivity());
-				  
-				  listView.setAdapter(mListAdapter);
-				
-				
+		for(int i=0;i<evaluatequestiondetails.size();i++)
+		{
+	     l=(LinearLayout)view.findViewById(R.id.rel_parent);
+		LinearLayout.LayoutParams currentLayout = new LinearLayout.LayoutParams(
+			1080,140);	
+		currentLayout.bottomMargin=10;
+		View childview=this.inflater1.inflate(R.layout.childllayout, null);
+ed=(EditText)childview.findViewById(R.id.etext_test);
+		ed.setId(i);
+		allEds.add(ed);
+	TextView question_txtview=(TextView)childview.findViewById(R.id.txt_question);
+		EvaluationQuestiondetails ev=new EvaluationQuestiondetails();
+		ev=evaluatequestiondetails.get(i);
+	question_txtview.setText(ev.getQuestion());
+			l.addView(childview,currentLayout);
 
-				  listView.setOnItemClickListener(new OnItemClickListener() {
+		}
+		
+		
+		
+	}
 
-					  public void onItemClick(AdapterView<?> parent, View view, int position,
-							    long id) {
-						  
-						 
-						  
-							  }
-							 });  
-				  
-		  }
-		 else
-	  	  {
-	  		
-//	  		SMUtility.buildAlertMessage(getActivity(), getResources().getString(R.string.NoDevelopersFound));
-				
-	  	  }
+
+	@Override
+	public void postSuccess(
+			PMTEvaluationQuestionsScreenReturns pMTEvaluationQuestionsScreenReturns) 
+	{
+		if(pMTEvaluationQuestionsScreenReturns.getStatus().equals("success"))
+		{
+			SMUtility.buildAlertMessage(getActivity(), getResources().getString(R.string.Success));
+			
+			
+			mFragmentMyDeveloperEvaluation=new FragmentMyDeveloperEvaluation();
+			  
+			  
+			  FragmentChangeActivity fragmentChangeActivity=  (FragmentChangeActivity) getActivity();
+			  fragmentChangeActivity.switchContent(mFragmentMyDeveloperEvaluation);
+	  			
+		}
+		
 	}
 }

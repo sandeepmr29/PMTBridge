@@ -1,5 +1,6 @@
 package com.bridge.bridgepmt.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,13 +12,13 @@ import android.widget.TextView;
 
 import com.bridge.bridgepmt.activities.R;
 import com.bridge.bridgepmt.app.Bridgepmt;
+import com.bridge.bridgepmt.views.LoginScreen;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 
 
 public class FragmentMyLogout extends Fragment {
-    CheckBox checkBox1;
-    CheckBox checkBox2;
+   
     TextView mTitletxtview;
     public FragmentMyLogout() {
     }
@@ -26,6 +27,7 @@ public class FragmentMyLogout extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_logout, null);
+        
         
         return view;
     }
@@ -42,11 +44,10 @@ public class FragmentMyLogout extends Fragment {
 			     mhead.setText("Logout");
 			     TextView maptxtview=(TextView)v.findViewById(R.id.txt_map);
 
-if(maptxtview.getVisibility()==View.VISIBLE)
-{
-	maptxtview.setVisibility(View.INVISIBLE);
+			     getActivity().finish();
+			     Intent ione=new Intent(getActivity(), LoginScreen.class);
+			        startActivity(ione);
 
-}
 	}
 
 

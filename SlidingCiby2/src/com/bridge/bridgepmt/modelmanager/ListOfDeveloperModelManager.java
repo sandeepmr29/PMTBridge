@@ -37,7 +37,8 @@ public class ListOfDeveloperModelManager
 				public HttpUriRequest getHttpRequestMethod() {
 					
 					
-					HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/activedevelopers/"+Bridgepmt.getProjectid());
+					HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/activedevelopers/"+Bridgepmt.getProjectid()+"/"
+							+Bridgepmt.getClientid()+"/"+Bridgepmt.getAccessToken());
 					return httpget;
 					
 				}

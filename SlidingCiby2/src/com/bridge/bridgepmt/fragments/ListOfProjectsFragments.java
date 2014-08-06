@@ -8,9 +8,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.webkit.WebIconDatabase.IconListener;
 import android.widget.AdapterView;
@@ -18,6 +21,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bridge.bridgepmt.activities.R;
 import com.bridge.bridgepmt.adapters.ListAdapter;
@@ -52,6 +56,36 @@ public class ListOfProjectsFragments extends Fragment implements ListOfProjectsM
 	        listView= (ListView) view.findViewById(R.id.list);
 	        mprogressdialog = new ProgressDialog(getActivity());
 	        mprogressdialog.setMessage("loading");
+	        
+	        view.setFocusableInTouchMode(true);
+	        view.requestFocus();
+//	        view.setOnKeyListener(new View.OnKeyListener() {
+//	                @Override
+//	                public boolean onKey(View v, int keyCode, KeyEvent event) {
+//	                    Log.i("tag", "keyCode: " + keyCode);
+//	                    if( keyCode == KeyEvent.KEYCODE_BACK ) {
+//	                            Log.i("tag", "onKey Back listener is working!!!");
+//	                        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//	                        return true;
+//	                    } else {
+//	                        return false;
+//	                    }
+//	                }
+//	            });
+	        
+	        view.setOnKeyListener( new OnKeyListener()
+	        {
+	            @Override
+	            public boolean onKey( View v, int keyCode, KeyEvent event )
+	            {
+	                if( keyCode == KeyEvent.KEYCODE_BACK )
+	                {
+	                    Toast.makeText(getActivity(),"Clicked", Toast.LENGTH_SHORT).show();
+	                  
+	                }
+	                return false;
+	            }
+	        } );
 	        
 	        return view;
 	    }
@@ -141,6 +175,14 @@ public class ListOfProjectsFragments extends Fragment implements ListOfProjectsM
 	 }
 	
 	
-	
+
+
+public void onBackPressed()
+{
+    FragmentManager fm = getActivity().getSupportFragmentManager();
+    fm.popBackStack();
+}
+
+
 
 }

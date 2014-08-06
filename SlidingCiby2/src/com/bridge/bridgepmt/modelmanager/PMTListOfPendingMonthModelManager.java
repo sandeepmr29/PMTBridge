@@ -32,7 +32,10 @@ public class PMTListOfPendingMonthModelManager {
 
 				@Override
 				public HttpUriRequest getHttpRequestMethod() {
-					HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/pendingmonths/"+Bridgepmt.getClientid()+"/"+Bridgepmt.getDeveloperid());
+					//http://10.0.0.113:8080/api
+					
+					HttpGet httpget = new HttpGet("http://10.0.0.113:8080/api/pendingmonths/"+Bridgepmt.getClientid()+"/"+Bridgepmt.getDeveloperid()+"/"
+					+Bridgepmt.getAccessToken());
 					return httpget;
 					
 				}

@@ -6,7 +6,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +50,22 @@ public class ListOfDeveloperFragment extends Fragment implements ListOfDeveloper
 	        listView= (ListView) view.findViewById(R.id.list);
 	        mprogressbar = new ProgressDialog(getActivity());
 	        mprogressbar.setMessage("loading");
+	        
+	        view.setFocusableInTouchMode(true);
+	        view.requestFocus();
+	        view.setOnKeyListener(new View.OnKeyListener() {
+	                @Override
+	                public boolean onKey(View v, int keyCode, KeyEvent event) {
+	                    Log.i("tag", "keyCode: " + keyCode);
+	                    if( keyCode == KeyEvent.KEYCODE_BACK ) {
+	                            Log.i("tag", "onKey Back listener is working!!!");
+	                        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+	                        return true;
+	                    } else {
+	                        return false;
+	                    }
+	                }
+	            });
 	        
 	        return view;
 	    }

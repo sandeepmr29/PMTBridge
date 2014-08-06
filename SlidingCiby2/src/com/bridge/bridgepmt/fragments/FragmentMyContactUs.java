@@ -8,6 +8,9 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +20,7 @@ import android.widget.TextView;
 
 
 public class FragmentMyContactUs extends Fragment {
-    CheckBox checkBox1;
-    CheckBox checkBox2;
+   
     TextView mTitletxtview;
     public FragmentMyContactUs() {
     }
@@ -26,11 +28,26 @@ public class FragmentMyContactUs extends Fragment {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB) @SuppressLint("NewApi") @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_checkbox, null);
+        View view = inflater.inflate(R.layout.fragment_contactus, null);
     
-        checkBox1 = (CheckBox) view.findViewById(R.id.fragment_checkbox_checkbox1);
-        checkBox2 = (CheckBox) view.findViewById(R.id.fragment_checkbox_checkbox2);
+       
         View v=getActivity().getActionBar().getCustomView();
+        
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    Log.i("tag", "keyCode: " + keyCode);
+                    if( keyCode == KeyEvent.KEYCODE_BACK ) {
+                            Log.i("tag", "onKey Back listener is working!!!");
+                        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
         
         return view;
     }

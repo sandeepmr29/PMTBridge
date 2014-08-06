@@ -17,8 +17,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 public class BaseActivity extends SlidingFragmentActivity {
-int i=0;
-int c=1;
+
 	private int mTitleRes;
 	protected ListFragment mFrag;
 
