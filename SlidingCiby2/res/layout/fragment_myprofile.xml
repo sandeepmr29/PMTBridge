@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,15 +11,86 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
-        android:text="My Profile"
+        android:text="Profile"
+        android:layout_alignParentTop="true"
+      android:layout_centerHorizontal="true"
         android:textColor="@color/black"
-        
-        
-        
-        
-        
+        android:layout_marginTop="10dp"
+      
         >
         </TextView>
+        
+    <ImageView
+        android:id="@+id/ImClientImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/txt_nearby"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/profile_image" />
     
+    
+    
+    <TextView 
+         android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ImClientImage"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="60dp"
+        android:text="Username"/>
+    <TextView 
+        android:id="@+id/tvusername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"       
+        android:text="Username"
+        android:layout_alignBaseline="@+id/tvUsername"
+        android:layout_toRightOf="@+id/tvUsername"
+       />
+    
+     <TextView 
+         android:id="@+id/tvPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvUsername"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:text="Password"/>
+    <TextView 
+        android:id="@+id/tvpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"       
+        android:text="Password"
+        android:layout_alignBaseline="@+id/tvPassword"
+        android:layout_toRightOf="@+id/tvPassword"
+       />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    
+     <TextView
+       android:id="@+id/tvUploadImage" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Image"
+        android:layout_above="@+id/tvUpdate"
+        android:layout_centerHorizontal="true"
+     
+        android:textColor="@color/blue" >
+        </TextView>
+        
+      <TextView
+       android:id="@+id/tvUpdate" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/blue"
+        android:layout_alignParentBottom="true" >
+        </TextView>
 
-</LinearLayout>
+</RelativeLayout>
